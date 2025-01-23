@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        margin: 1em auto;
+        padding: 0 1em;
+        max-width: 600px;
+      }
+      textarea {
+        width: 100%;
+        height: 30vh;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h2>Leet code converter</h2>
+    <textarea id="input"></textarea>
+    <div>
+      <button id="submit">Convert</button>
+    </div>
+    <div id="leet"></div>
+
+    <script>
+      window.onload = function () {
+        document.getElementById('submit').onclick = function () {
+          document.getElementById('leet').innerText = convert(
+            document.getElementById('input').value
+          );
+        };
+
+        function getLeet(letter) {
+          let replace = {
+            O: '0',
+            o: '0',
+            l: '1',
+            Z: '2',
+            z: '2',
+            E: '3',
+            e: '3',
+            A: '4',
+            a: '4',
+            S: '5',
+            s: '5',
+            b: '6',
+            B: '8',
+            g: '9',
+          };
+          return replace[letter] || letter;
+        }
+
+        function convert(text) {
+          let leet = '';
+          let letters = Array.from(text);
+          for (letter of letters) {
+            leet += getLeet(letter);
+          }
+          return leet;
+        }
+      };
+    </script>
+  </body>
+</html>
